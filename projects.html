@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeler - Ekonomi & Yazılım</title>
+  <title>Projeler - Yiğit Güldal</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -32,7 +33,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 250px;
+      width: 300px;
       height: 100%;
       background-color: #8B0000;
       color: white;
@@ -54,43 +55,148 @@
       width: 100%;
     }
     .sidebar nav ul li {
-      margin: 15px 0;
+      margin: 10px 0;
     }
     .sidebar nav ul li a {
-      color: white;
+      color: #d1d5db;
       text-decoration: none;
       font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
       transition: color 0.3s ease;
     }
+    .sidebar nav ul li a i {
+      margin-right: 8px;
+      font-size: 0.75em;
+    }
     .sidebar nav ul li a:hover {
-      color: #FFD700;
+      color: #ffffff;
     }
     .content {
-      margin-left: 250px;
+      margin-left: 300px;
       padding: 40px;
       min-height: 100vh;
     }
+    .content-container {
+      max-width: 95vw;
+      margin-left: 20px;
+      margin-right: auto;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #8B0000;
+      margin-bottom: 10px;
+    }
+    .section-divider {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
     .project-card {
-      background-color: white;
+      background-color: #fff;
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .project-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .project-card p, .project-card h3 {
+      color: #666;
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+    .project-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
     }
     .category-button {
+      display: inline-flex;
+      align-items: center;
       padding: 10px 20px;
-      background-color: #8B0000;
-      color: white;
+      background-color: white;
+      color: #8B0000;
+      border: 2px solid #8B0000;
       border-radius: 25px;
       margin: 5px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: 1rem;
     }
     .category-button:hover {
-      background-color: #A52A2A;
+      background-color: #8B0000;
+      color: white;
+    }
+    .skill-icons {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .project-card a {
+      color: #8B0000;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: text-decoration 0.3s ease;
+    }
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+    .project-skills-container {
+      background-color: #fce7f3;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    @media (max-width: 1200px) {
+      .section-title {
+        font-size: 1.75rem;
+      }
+    }
+    @media (max-width: 992px) {
+      .content {
+        margin-left: 0;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+      }
+      .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .sidebar nav ul li {
+        margin: 5px 10px;
+      }
+    }
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .project-card p, .project-card h3 {
+        font-size: 1.1rem;
+      }
+      #project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.25rem;
+      }
+      .project-card p, .project-card h3 {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -101,57 +207,75 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <img src="https://via.placeholder.com/120" alt="Profil Resmi">
-    <h2 class="text-xl font-bold">[ADINIZ]</h2>
-    <p class="text-sm text-center mb-4">Ekonomi & Yazılım Uzmanı</p>
+    <h2 class="text-xl font-bold">Yiğit Güldal</h2>
+    <p class="text-sm text-center mb-4">İktisat & Veri Analizi</p>
     <nav>
       <ul>
-        <li><a href="index.html#about">Hakkımda</a></li>
-        <li><a href="index.html#education">Eğitim</a></li>
-        <li><a href="index.html#experience">Deneyim</a></li>
-        <li><a href="projects.html">Projeler</a></li>
-        <li><a href="index.html#achievements">Başarılar</a></li>
-        <li><a href="index.html#courses">Aldığım Kurslar</a></li>
-        <li><a href="index.html#languages">Diller</a></li>
-        <li><a href="index.html#hobbies">Hobiler</a></li>
-        <li><a href="index.html#contact">İletişim</a></li>
+        <li><a href="index.html#about"><i class="fas fa-user"></i> HAKKIMDA</a></li>
+        <li><a href="index.html#education"><i class="fas fa-graduation-cap"></i> EĞİTİM</a></li>
+        <li><a href="index.html#experience"><i class="fas fa-briefcase"></i> DENEYİM</a></li>
+        <li><a href="projects.html"><i class="fas fa-folder"></i> PROJELER</a></li>
+        <li><a href="index.html#achievements"><i class="fas fa-trophy"></i> BAŞARILAR</a></li>
+        <li><a href="index.html#courses"><i class="fas fa-book"></i> KURSLAR</a></li>
+        <li><a href="index.html#skills"><i class="fas fa-code"></i> BECERİLER</a></li>
+        <li><a href="index.html#hobbies"><i class="fas fa-piano"></i> HOBİLER</a></li>
+        <li><a href="index.html#languages"><i class="fas fa-globe"></i> DİLLER</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> İLETİŞİM</a></li>
       </ul>
     </nav>
   </div>
 
   <!-- Content -->
   <div class="content">
-    <section id="projects" class="mb-10">
-      <h1 class="text-4xl font-bold text-red-700 mb-4">Projelerim</h1>
-      <p class="text-lg text-gray-700 mb-6">
-        Ekonomi ve yazılım alanında geliştirdiğim bazı projeler.
-      </p>
-      <div class="flex flex-wrap justify-center mb-6">
-        <button onclick="filterProjects('all')" class="category-button">Tümü</button>
-        <button onclick="filterProjects('economy')" class="category-button">Ekonomi</button>
-        <button onclick="filterProjects('software')" class="category-button">Yazılım</button>
-      </div>
-      <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="project-card" data-category="economy">
-          <h3 class="text-xl font-semibold mb-2">Finansal Analiz Platformu</h3>
-          <p class="text-gray-600">Python ve Pandas ile finansal veri analizi.</p>
-          <a href="#" class="text-red-600 hover:underline">Detaylar</a>
+    <section id="projects" class="mb-16">
+      <div class="content-container">
+        <h1 class="section-title">Projelerim</h1>
+        <div class="section-divider"></div>
+        <p class="text-lg text-gray-700 mb-6">
+          Ekonomi ve veri analizi alanında geliştirdiğim projeler, geleceği anlamlandırma tutkumun bir yansıması.
+        </p>
+        <div class="flex flex-wrap justify-start mb-6">
+          <button onclick="filterProjects('all')" class="category-button">Tümü</button>
+          <button onclick="filterProjects('economy')" class="category-button">Ekonomi</button>
+          <button onclick="filterProjects('data')" class="category-button">Veri Analizi</button>
         </div>
-        <div class="project-card" data-category="software">
-          <h3 class="text-xl font-semibold mb-2">Portföy Yönetim Uygulaması</h3>
-          <p class="text-gray-600">React ve Node.js ile geliştirildi.</p>
-          <a href="#" class="text-red-600 hover:underline">Detaylar</a>
-        </div>
-        <div class="project-card" data-category="economy">
-          <h3 class="text-xl font-semibold mb-2">Ekonomik Tahmin Modeli</h3>
-          <p class="text-gray-600">Makine öğrenimi ile trend tahmini.</p>
-          <a href="#" class="text-red-600 hover:underline">Detaylar</a>
+        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="project-card" data-category="economy">
+            <h3>Finansal Veri Analizi Platformu</h3>
+            <p>Ekonomik göstergeleri analiz eden bir Python tabanlı araç.</p>
+            <div class="project-skills-container">
+              <div class="skill-icons">
+                <img src="https://skillicons.dev/icons?i=python,pandas,jupyter&theme=light" alt="Skills" style="height: 40px;" />
+              </div>
+            </div>
+            <a href="#" class="text-red-600 hover:underline">Detaylar</a>
+          </div>
+          <div class="project-card" data-category="data">
+            <h3>Satış Trendleri Tahmin Modeli</h3>
+            <p>Perakende satış verilerini analiz eden makine öğrenimi modeli.</p>
+            <div class="project-skills-container">
+              <div class="skill-icons">
+                <img src="https://skillicons.dev/icons?i=python,scikitlearn&theme=light" alt="Skills" style="height: 40px;" />
+              </div>
+            </div>
+            <a href="#" class="text-red-600 hover:underline">Detaylar</a>
+          </div>
+          <div class="project-card" data-category="economy">
+            <h3>Ekonomik Gösterge Dashboard’u</h3>
+            <p>İnteraktif veri görselleştirme panosu.</p>
+            <div class="project-skills-container">
+              <div class="skill-icons">
+                <img src="https://skillicons.dev/icons?i=python,plotly&theme=light" alt="Skills" style="height: 40px;" />
+              </div>
+            </div>
+            <a href="#" class="text-red-600 hover:underline">Detaylar</a>
+          </div>
         </div>
       </div>
     </section>
   </div>
 
   <script>
-    // Custom Cursor Logic
     const cursor = document.querySelector('.custom-cursor');
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = `${e.clientX - 10}px`;
@@ -161,8 +285,19 @@
       el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
     });
-
-    // Project filter
+    document.querySelectorAll('.sidebar a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId.startsWith('index.html#')) {
+          window.location.href = targetId;
+        } else {
+          document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
     function filterProjects(category) {
       const cards = document.querySelectorAll('.project-card');
       cards.forEach(card => {
