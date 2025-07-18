@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yiğit Güldal - Electronics & Communication Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      cursor: none;
+      margin: 0;
+      overflow-x: hidden;
+      background-color: #f5f5f5;
+    }
+    
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: rgba(59, 130, 246, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease, background-color 0.3s ease;
+    }
+    .custom-cursor.hovered {
+      transform: scale(1.5);
+      background-color: rgba(236, 72, 153, 0.7);
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #8B0000;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sidebar img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 15px;
+      border: 4px solid white;
+    }
+    .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+    .sidebar nav ul li {
+      margin: 10px 0;
+    }
+    .sidebar nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+    .sidebar nav ul li a i {
+      margin-right: 8px;
+      font-size: 0.75em;
+    }
+    .sidebar nav ul li a:hover {
+      color: #FFD700;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      margin-left: 250px;
+      padding: 80px 40px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #8B0000;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: #555;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    
+    .hero-description {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 40px;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    
+    .hero-highlight {
+      color: #8B0000;
+      font-weight: 600;
+    }
+    
+    .hero-image {
+      position: absolute;
+      right: 5%;
+      bottom: 10%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background-color: #8B0000;
+      opacity: 0.1;
+      z-index: 1;
+    }
+    
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-image: radial-gradient(#8B0000 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.1;
+      z-index: 1;
+    }
+    
+    /* Content Sections */
+    .content {
+      margin-left: 250px;
+      padding: 40px;
+    }
+    
+    .typing-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #8B0000;
+      animation: typing 5s steps(40, end) infinite, blink 0.75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      0% { width: 0; }
+      50% { width: 100%; }
+      100% { width: 0; }
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #8B0000;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #A52A2A;
+    }
+    
+    .category-button {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: white;
+      color: #8B0000;
+      border: 2px solid #8B0000;
+      border-radius: 25px;
+      margin: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .category-button:hover {
+      background-color: #8B0000;
+      color: white;
+    }
+    .category-button i {
+      margin-right: 8px;
+    }
+    
+    .view-projects-button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: white;
+      color: #8B0000;
+      border: 2px solid #8B0000;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .view-projects-button:hover {
+      background-color: #8B0000;
+      color: white;
+    }
+    
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .card p, .card ul {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .card ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .card i {
+      margin-right: 8px;
+      color: #8B0000;
+    }
+    
+    .section-title {
+      color: #8B0000;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .section-divider {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .content-container {
+      max-width: 700px;
+      margin-left: 20px;
+      margin-right: auto;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      .hero-image {
+        width: 300px;
+        height: 300px;
+        opacity: 0.05;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .hero-section, .content {
+        margin-left: 0;
+      }
+      .hero-section {
+        padding-top: 120px;
+        text-align: center;
+      }
+      .hero-content {
+        margin: 0 auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-image {
+        display: none;
+      }
+      .hero-pattern {
+        width: 100%;
+        opacity: 0.05;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+      .hero-section {
+        padding: 80px 20px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      .hero-description {
+        font-size: 1rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="https://via.placeholder.com/120" alt="Profil Resmi">
+    <h2 class="text-xl font-bold">Yiğit Güldal</h2>
+    <p class="text-sm text-center mb-4">Electronics & Communication Engineer</p>
+    <nav>
+      <ul>
+        <li><a href="#about"><i class="fas fa-user"></i> ABOUT</a></li>
+        <li><a href="#education"><i class="fas fa-graduation-cap"></i> EDUCATION</a></li>
+        <li><a href="#experience"><i class="fas fa-briefcase"></i> EXPERIENCE</a></li>
+        <li><a href="#projects"><i class="fas fa-folder"></i> PROJECTS</a></li>
+        <li><a href="#achievements"><i class="fas fa-trophy"></i> ACHIEVEMENTS</a></li>
+        <li><a href="#courses"><i class="fas fa-book"></i> COURSES</a></li>
+        <li><a href="#languages"><i class="fas fa-globe"></i> LANGUAGES</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="about">
+    <div class="hero-pattern"></div>
+    <div class="hero-image"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Hi, I'm <span class="hero-highlight">Yiğit Güldal</span>
+      </h1>
+      <h2 class="hero-subtitle">
+        <span class="typing-text">Electronics & Communication Engineering Student</span>
+      </h2>
+      <p class="hero-description">
+        Specializing in autonomous systems and computer vision. Developing next-generation ADAS technologies through deep learning, sensor fusion, and robotics solutions.
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="button">
+          <i class="fas fa-download"></i> Download CV
+        </a>
+        <a href="#projects" class="view-projects-button">
+          <i class="fas fa-laptop-code"></i> View Projects
+        </a>
+      </div>
+      <div class="flex flex-wrap justify-start">
+        <a href="#" class="category-button"><i class="fas fa-microchip"></i> Autonomous Systems</a>
+        <a href="#" class="category-button"><i class="fas fa-robot"></i> Robotics</a>
+        <a href="#" class="category-button"><i class="fas fa-eye"></i> Computer Vision</a>
+        <a href="#" class="category-button"><i class="fas fa-brain"></i> Deep Learning</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Sections -->
+  <div class="content">
+    <section id="education" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Education</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <p><i class="fas fa-school"></i> Koç University</p>
+          <p><i class="fas fa-map-marker-alt"></i> Istanbul, Turkey</p>
+          <p><i class="fas fa-book-open"></i> <strong>Bachelor of Economics</strong></p>
+          <p><i class="fas fa-calendar-alt"></i> September 2019 - June 2023</p>
+          <p>Courses & Activities</p>
+          <ul>
+            <li><i class="fas fa-chalkboard-teacher"></i> Microeconomics, Macroeconomics, Statistics</li>
+            <li><i class="fas fa-users"></i> Economics Club, Research Group</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Experience</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <p><i class="fas fa-building"></i> XYZ Bank</p>
+          <p><i class="fas fa-map-marker-alt"></i> Istanbul, Turkey</p>
+          <p><i class="fas fa-calendar-alt"></i> July 2023 - Present</p>
+          <p><i class="fas fa-tasks"></i> Responsibilities: Financial reporting, data analysis, customer portfolio management.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <p><i class="fas fa-laptop-code"></i> Project 1: Financial Prediction Model</p>
+          <p><i class="fas fa-calendar-alt"></i> Completion: 2024</p>
+          <p><i class="fas fa-tools"></i> Technologies Used: Python, TensorFlow</p>
+          <p><i class="fas fa-check"></i> Result: Achieved 85% accuracy rate.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Achievements</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <p><i class="fas fa-award"></i> 2023 Economics Competition - 1st Place</p>
+          <p><i class="fas fa-medal"></i> 2022 Coding Marathon - Team Leader</p>
+          <p><i class="fas fa-star"></i> 2021 Academic Research Award</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Courses</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <ul>
+            <li><i class="fas fa-laptop"></i> Data Science with Python - Coursera</li>
+            <li><i class="fas fa-code"></i> Web Development - Udemy</li>
+            <li><i class="fas fa-chart-pie"></i> Financial Modeling - LinkedIn Learning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Languages</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <p><i class="fas fa-language"></i> Turkish - Native</p>
+          <p><i class="fas fa-language"></i> English - Advanced (C1)</p>
+          <p><i class="fas fa-language"></i> German - Beginner (A2)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="mb-10">
+      <div class="content-container">
+        <h2 class="section-title">Contact</h2>
+        <div class="section-divider"></div>
+        <div class="card">
+          <p><i class="fas fa-envelope"></i> Email: example@email.com</p>
+          <p><i class="fab fa-linkedin"></i> LinkedIn: linkedin.com/in/example</p>
+          <p><i class="fab fa-github"></i> GitHub: github.com/example</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Custom Cursor Logic
+    const cursor = document.querySelector('.custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = `${e.clientX - 10}px`;
+      cursor.style.top = `${e.clientY - 10}px`;
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
+
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('.sidebar a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
